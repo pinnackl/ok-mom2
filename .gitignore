@@ -46,3 +46,5 @@
 
 # Backup entities generated with doctrine:generate:entities command
 */Entity/*~
+ok-mom2.sublime-*
+bower_components
