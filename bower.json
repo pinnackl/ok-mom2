@@ -1,0 +1,21 @@
+{
+  "name": "ok-mom2",
+  "homepage": "https://github.com/pinnackl/ok-mom2",
+  "description": "A parent - children todo application",
+  "main": "",
+  "authors": [
+    "Pinnackl"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "web/assets/vendor/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "materialize": "^0.97.8"
+  }
+}
