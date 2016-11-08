@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Evheniy\MaterializeBundle\MaterializeBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
+            new FOSChildBundle\FOSChildBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
