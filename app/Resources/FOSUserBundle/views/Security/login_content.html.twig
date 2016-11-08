@@ -4,19 +4,39 @@
     <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 {% endif %}
 
-<form action="{{ path("fos_user_security_check") }}" method="post">
-    {% if csrf_token %}
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-    {% endif %}
 
-    <label for="username">{{ 'security.login.username'|trans }}</label>
-    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+<div class="section"></div>
+<div class="section"></div>
+<div class="container">
+    <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+        <form class="col s12" action="{{ path("fos_user_security_check") }}" method="post">
+            {% if csrf_token %}
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+            {% endif %}
 
-    <label for="password">{{ 'security.login.password'|trans }}</label>
-    <input type="password" id="password" name="_password" required="required" />
+            <div class='row'>
+                <div class='input-field col s12'>
+                    <input class='validate' type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+                    <label for="username">{{ 'security.login.username'|trans }}</label>
+                </div>
+            </div>
 
-    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-    <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+            <div class='row'>
+                <div class='input-field col s12'>
+                    <input class='validate' type="password" id="password" name="_password" required="required" />
+                    <label for="password">{{ 'security.login.password'|trans }}</label>
+                </div>
+            </div>
 
-    <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
-</form>
+            <div class='row'>
+                <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+            </div>
+
+            <div class='row'>
+                <input class='col s12 btn btn-large waves-effect indigo' type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+            </div>    
+        </form>
+    </div>
+</div>
+
