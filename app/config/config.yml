@@ -91,3 +91,7 @@ materialize:
     html5: true
     async: false
 
+easy_admin:
+    entities:
+        - AppBundle\Entity\Task
+        - AppBundle\Entity\User
