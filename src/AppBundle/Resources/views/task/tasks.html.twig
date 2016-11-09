@@ -1,0 +1,10 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AppBundle:taskController:tasks{% endblock %}
+
+{% block content %}
+{# <h1>Welcome to the taskController:tasks page</h1> #}
+	{% for task in tasks %}
+	    <p>{{task.title}}</p>
+	{% endfor %}
+{% endblock %}
