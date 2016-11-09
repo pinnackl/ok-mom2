@@ -86,6 +86,7 @@ main {
 }
 
 .main-container {
+    position: relative; 
     z-index: 3;
 }
 

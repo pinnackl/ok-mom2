@@ -1,5 +1,11 @@
 {% extends 'base.html.twig' %}
 
+{# Add background on home page only #}
+{% block background %}
+    <div class="bg-image"></div>
+    <div class="filter"></div>
+{% endblock %}
+
 {% block body %}
     <h1>Home</h1>
 {% endblock %}
