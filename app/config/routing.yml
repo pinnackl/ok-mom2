@@ -1,5 +1,14 @@
+fos_child:
+    resource: "@FOSChildBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+easy_admin_bundle:
+    resource: "@EasyAdminBundle/Controller/"
+    type:     annotation
+    prefix:   /nimda
