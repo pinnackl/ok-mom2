@@ -10,6 +10,17 @@
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
             <link rel="stylesheet" type="text/css"
                 href="{{ asset('assets/vendor/materialize/dist/css/materialize.min.css') }}">
+            <style>
+                  body {
+                    display: flex;
+                    min-height: 100vh;
+                    flex-direction: column;
+                  }
+
+                  main {
+                    flex: 1 0 auto;
+                  }
+            </style>
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
@@ -19,17 +30,10 @@
                 <nav>
                     <div class="nav-wrapper">
                         <a href="{{url('homepage')}}" class="brand-logo">Logo</a>
-                        <a href="{{url('homepage')}}" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                        <a href="{{url('homepage')}}" data-activates="mobile" class="button-collapse"><i class="material-icons">menu</i></a>
                         <ul class="right hide-on-med-and-down">
                             {% if app.user %}
-                                <li><a href="{{url('homepage')}}logout">SIGN OUT</a></li>
-                            {% else %}
-                                <li><a href="{{url('homepage')}}login">LOGIN</a></li>
-                                <li><a href="{{url('homepage')}}register">SIGNUP</a></li>
-                            {% endif %}
-                        </ul>
-                        <ul class="side-nav" id="mobile-demo">
-                            {% if app.user %}
+                                <li><a href="{{url('homepage')}}profile">Welcome {{app.user.username}}</a></li>
                                 <li><a href="{{url('homepage')}}logout">SIGN OUT</a></li>
                             {% else %}
                                 <li><a href="{{url('homepage')}}login">LOGIN</a></li>
@@ -39,17 +43,66 @@
                     </div>
                 </nav>
             </div>
+            <div class="side-menu">
+                <ul class="side-nav" id="mobile">
+                    {% if app.user %}
+                        <li>Welcome <a href="{{url('homepage')}}logout">{{app.user.username}}</a></li>
+                        <li><a href="{{url('homepage')}}logout">SIGN OUT</a></li>
+                    {% else %}
+                        <li><a href="{{url('homepage')}}login">LOGIN</a></li>
+                        <li><a href="{{url('homepage')}}register">SIGNUP</a></li>
+                    {% endif %}
+                </ul>
+            </div>
         {% endblock %}
 
-        {% block body %}
-        {% endblock %}
+        <main>
+            <div class="container">
+                {% block body %}
+                    {% block content %}
+                    {% endblock %}
+                {% endblock %}
+            </div>
+        </main>
+
+        <footer class="page-footer">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">Footer Content</h5>
+                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2014 Copyright Text
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+          </div>
+        </footer>
 
         {% block javascripts %}
             <script src="{{ asset('assets/vendor/jquery/dist/jquery.min.js') }}"></script>
             <script src="{{ asset('assets/vendor/materialize/dist/js/materialize.min.js') }}"></script>
             <script>
             $(document).ready(function () {
-                // $(".button-collapse").sideNav();
+                $('.button-collapse').sideNav({
+                        menuWidth: 300, // Default is 240
+                        edge: 'left', // Choose the horizontal origin
+                        closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+                        draggable: true // Choose whether you can drag to open on touch screens
+                    }
+                );
             });
             </script>
         {% endblock %}
