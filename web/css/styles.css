@@ -1,0 +1,94 @@
+/**
+ * Pinnackl Ok Mom CSS
+ */
+* {
+    /* A11y */
+    outline-color: yellow;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color: #eeeeee;
+}
+
+nav {
+    background-color: #179BD7;
+}
+
+nav .button-collapse i {
+    height: 64px;
+    line-height: 64px;
+}
+
+.nav-img {
+    background-image: url('/images/pexels-photo-114123.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 160px;
+}
+
+.nav-img .user-avt {
+  height: 5em;
+  display: flex;
+  align-items: center;
+}
+
+.nav-img .user-avt .nav-usr-name {
+    font-size: 4em;
+}
+
+.nav-img .user-avt i {
+    font-size: 5em;
+    color: #179BD7;
+}
+
+.navbar-fixed, nav {
+    height: 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /*align-items: center;*/
+    align-content: stretch;
+}
+
+main {
+    flex: 1 0 auto;
+    height: 90vh;
+}
+
+.bg-image {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 91vh;
+    z-index: 0;
+    background-image: url('/images/pexels-photo-31143.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.filter {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 91vh;
+    background-color: rgba(0,0,0,0);
+    background-image: -webkit-linear-gradient(rgba(0,0,0,0.4) 0%,rgba(0,0,0,.4) 75%,rgba(0,0,0,.4) 100%); 
+    background-image: linear-gradient(rgba(0,0,0,0.4) 0%,rgba(0,0,0,.4) 75%,rgba(0,0,0,.4) 100%);
+    z-index: 2;
+}
+
+.main-container {
+    z-index: 3;
+}
+
+footer.page-footer {
+    background-color: #ffffff;
+}
