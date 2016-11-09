@@ -41,6 +41,13 @@ class RegistrationController extends Controller
      */
     public function registerAction(Request $request)
     {
+
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            $routeHome = $this->generateUrl('homepage');
+
+            return new RedirectResponse($routeHome);
+        }
+
         /** @var $formFactory FactoryInterface */
         $formFactory = $this->get('fos_user.registration.form.factory');
         /** @var $userManager UserManagerInterface */
@@ -49,7 +56,9 @@ class RegistrationController extends Controller
         $dispatcher = $this->get('event_dispatcher');
 
         $user = $userManager->createUser();
-        $user->setEnabled(true);
+        $user->setRoles(array('ROLE_USER', 'ROLE_PARENT'));
+        // Useless
+        // $user->setEnabled(true);
 
         $event = new GetResponseUserEvent($user, $request);
         $dispatcher->dispatch(FOSUserEvents::REGISTRATION_INITIALIZE, $event);
