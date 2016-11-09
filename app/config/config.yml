@@ -63,7 +63,6 @@ doctrine:
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
-    host:      "%mailer_host%"
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
@@ -73,12 +72,12 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: AppBundle\Entity\User
-    from_email: 
-        address:     alexis.thorel@gmail.com
-        sender_name:    Alexis Thorel
+    from_email:
+        address:     pinnakle.work@gmail.com
+        sender_name:    Pinnackl Team
     registration:
         confirmation:
-            enabled:    true 
+            enabled:    true
             template:   FOSUserBundle:Registration:email.txt.twig
 
 #MaterializeBundle
