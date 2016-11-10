@@ -1,10 +1,22 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}AppBundle:taskController:tasks{% endblock %}
+{% block title %}OK Mom - Tasks{% endblock %}
 
 {% block content %}
-{# <h1>Welcome to the taskController:tasks page</h1> #}
-	{% for task in tasks %}
-	    <p>{{task.title}}</p>
-	{% endfor %}
+    <div class="tasks">
+    <h1>Welcome {{app.user.username}}!</h1>
+    <hr>
+    {% for task in tasks %}
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4">{{task.title}}<i class="material-icons right">more_vert</i></span>
+            </div>
+            <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">{{task.title}}<i class="material-icons right">close</i></span>
+            <p>{{task.description}}</p>
+            </div>
+            <p class="card-content"><a href="{{url('homepage')}}task/{{task.id}}">MORE</a></p>
+        </div>
+    {% endfor %}
+    </div>
 {% endblock %}

@@ -1,7 +1,40 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}AppBundle:taskController:taskDetail{% endblock %}
+{% block title %}OK Mom - Task{% endblock %}
 
-{% block body %}
-<h1>Welcome to the taskController:taskDetail page</h1>
+{% block content %}
+    <div class="tasks">
+        <div class="btn-navigation">
+            <a class="waves-effect waves-light btn back-btn" href="{{url('homepage')}}tasks"><i class="material-icons left">arrow_back</i>BACK</a>
+        </div>
+        <h1>Task Detail</h1>
+        <hr>
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4">{{task.title}}<i class="material-icons right">more_vert</i></span>
+            </div>
+            <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">{{task.title}}<i class="material-icons right">close</i></span>
+            <p>{{task.description}}</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block background %}
+<div class="fixed-action-btn">
+    <a class="btn-floating btn-large red">
+        <i class="large material-icons">mode_edit</i>
+    </a>
+    <ul>
+        <li>
+            <a class="btn-floating yellow darken-1" href="{{url('homepage')}}#!comment"><i class="material-icons">format_quote</i></a>
+            <a href="{{url('homepage')}}#!comment" class="btn-floating mobile-fab-tip">Comment</a>
+        </li>
+        <li>
+            <a class="btn-floating blue" href="{{url('homepage')}}#!files"><i class="material-icons">attach_file</i></a>
+            <a href="{{url('homepage')}}#!files" class="btn-floating mobile-fab-tip">Add Proof</a>
+        </li>
+    </ul>
+</div>
 {% endblock %}

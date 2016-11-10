@@ -25,8 +25,11 @@ class taskController extends Controller
      */
     public function taskDetailAction($taskId)
     {
+        $em = $this->getDoctrine()->getManager();
+        $task = $em->getRepository('AppBundle:Task')->findOneById($taskId);
+
         return $this->render('AppBundle:task:task_detail.html.twig', array(
-            // ...
+            'task' => $task
         ));
     }
 

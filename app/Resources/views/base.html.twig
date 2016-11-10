@@ -29,7 +29,8 @@
                         </a>
                         <ul class="right hide-on-med-and-down">
                             {% if app.user %}
-                                <li><a href="{{url('homepage')}}tasks" title="My Tasks">MY TASKS</a></li>
+                                <li><a href="{{url('homepage')}}tasks" title="My Tasks">MY TASKS
+                                    <span class="new badge red">1</span></a></li>
                                 <li>
                                     <a href="{{url('homepage')}}profile" tabindex="1">
                                         <img class="user-avatar" src="http://placehold.it/56/56">
@@ -76,10 +77,14 @@
             {% endblock %}
             <div class="main-container">
                 {% block body %}
-                    {% block content %}
-                    {% endblock %}
+                    <div class="container">
+                        {% block content %}
+                        {% endblock %}
+                    </div>
                 {% endblock %}
             </div>
+            {% block fab %}
+            {% endblock %}
         </main>
 
         <footer class="page-footer">

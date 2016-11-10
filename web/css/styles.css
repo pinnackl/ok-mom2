@@ -97,9 +97,8 @@ nav ul a {
 
 main {
     flex: 1 0 auto;
-    height: 90vh;
+    min-height: 90vh;
 }
-
 
 .bg-image {
     position: absolute;
@@ -114,11 +113,11 @@ main {
     background-size: cover;
     background-position: center;
 
-    -webkit-animation: fadein 2s; /* Safari and Chrome */
-    -moz-animation: fadein 2s; /* Firefox */
-    -ms-animation: fadein 2s; /* Internet Explorer */
-    -o-animation: fadein 2s; /* Opera */
-    animation: fadein 2s;
+    -webkit-animation: fadein 5s; /* Safari and Chrome */
+    -moz-animation: fadein 5s; /* Firefox */
+    -ms-animation: fadein 5s; /* Internet Explorer */
+    -o-animation: fadein 5s; /* Opera */
+    animation: fadein 5s;
     
 }
 
@@ -213,4 +212,46 @@ footer .link img {
     height: 24px;
     margin-right: 3px;
     vertical-align: middle;
+}
+
+.main-container {
+    margin-top: 64px;
+}
+
+/***************/
+/* Task styles */
+/***************/
+
+.tasks h1 {
+    font-weight: 300;
+    font-size: 45px;
+    margin: 0;
+}
+
+.tasks .card {
+    height: 170px;
+}
+
+.tasks .card .card-title {
+    display: block;
+}
+
+.mobile-fab-tip {
+    position: fixed;
+    right: 85px;
+    padding:0px 0.5rem;
+    text-align: right;
+    background-color: #323232;
+    border-radius: 2px;
+    color: #FFF;
+    width:auto;
+}
+
+.back-btn,
+.btn:hover, .btn-large:hover {
+    background-color: #179BD7;
+}
+
+.btn-navigation {
+    margin-bottom: 16px;
 }
