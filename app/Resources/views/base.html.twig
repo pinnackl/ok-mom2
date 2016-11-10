@@ -23,11 +23,20 @@
                     <div class="nav-wrapper">
                         {# FIXME : tabindex #}
                         <a href="{{url('homepage')}}" data-activates="mobile" class="button-collapse"><i class="material-icons" tabindex="1">menu</i></a>
-                        <a href="{{url('homepage')}}" class="brand-logo" tabindex="1">Logo</a>
+                        <a href="{{url('homepage')}}" class="brand-logo" tabindex="1">
+                            <img src="/images/logo.png" class="logo" alt="">
+                            <span class="">OK Mom</span>
+                        </a>
                         <ul class="right hide-on-med-and-down">
                             {% if app.user %}
-                                <li><a href="{{url('homepage')}}profile" tabindex="1">Welcome {{app.user.username}}</a></li>
-                                <li><a href="{{url('homepage')}}logout">SIGN OUT</a></li>
+                                <li><a href="{{url('homepage')}}tasks" title="My Tasks">MY TASKS</a></li>
+                                <li>
+                                    <a href="{{url('homepage')}}profile" tabindex="1">
+                                        <img class="user-avatar" src="http://placehold.it/56/56">
+                                        {{app.user.username}}
+                                    </a>
+                                </li>
+                                <li><a href="{{url('homepage')}}logout"  tabindex="1">LOGOUT</a></li>
                             {% else %}
                                 <li><a href="{{url('homepage')}}login" tabindex="1">LOGIN</a></li>
                                 <li><a href="{{url('homepage')}}register" tabindex="1">SIGNUP</a></li>
@@ -42,14 +51,17 @@
                         <li>
                             <div class="nav-card">
                                 <div class="nav-img">
+                                    <div class="filter"></div>
                                     <a href="{{url('homepage')}}profile" class="user-avt" tabindex="-1">
-                                        <i class="material-icons" tabindex="1">account_circle</i>
-                                        <span class="nav-usr-name">{{app.user.username}}</span>
+                                        <div class="avt">
+                                            <img class="user-avatar" src="http://placehold.it/56/56"></div>
+                                        <div class="nav-usr-name">{{app.user.username}}</div>
+                                        <div class="nav-usr-email">{{app.user.email}}</div>
                                     </a>
-                                    <a href="{{url('homepage')}}logout" tabindex="-1">SIGN OUT</a>
                                 </div>
                             </div>
                         </li>
+                        <li><a href="{{url('homepage')}}logout" tabindex="-1">SIGN OUT</a></li>
                     {% else %}
                         <h2>Menu</h2>
                         <li><a href="{{url('homepage')}}login" tabindex="-1">LOGIN</a></li>
@@ -73,25 +85,32 @@
         <footer class="page-footer">
           <div class="container">
             <div class="row">
-              <div class="col l6 s12">
-                <h5 class="white-text">Footer Content</h5>
-                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-              </div>
-              <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Links</h5>
+              <div class="col l4 s12">
+                <div class="footer-title">Tasks</div>
                 <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                  <li><a class="link" href="#!about/tasks">Tasks</a></li>
+                  <li><a class="link" href="#!about/family">Family</a></li>
+                  <li><a class="link" href="#!about/child">Child</a></li>
+                </ul>
+              </div>
+              <div class="col l4 s12">
+                <div class="footer-title">About</div>
+                <ul>
+                  <li><a class="link" href="#!about/okmom">About OK Mom</a></li>
+                </ul>
+              </div>
+              <div class="col l4 s12">
+                <div class="footer-title">Find us</div>
+                <ul>
+                  <li><a class="link" href="https://github.com/pinnackl">
+                      <img src="/images/github.svg">Github</a></li>
                 </ul>
               </div>
             </div>
           </div>
           <div class="footer-copyright">
             <div class="container">
-            © 2014 Copyright Text
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            © 2016 <a href="https://pinnackl.com">pinnackl.com</a>
             </div>
           </div>
         </footer>
