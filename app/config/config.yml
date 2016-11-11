@@ -75,6 +75,10 @@ fos_user:
     from_email:
         address:     pinnakle.work@gmail.com
         sender_name:    Pinnackl Team
+    service:
+        mailer: fos_user.mailer.twig_swift
+    resetting:
+        token_ttl: 900
     registration:
         confirmation:
             enabled:    true
