@@ -43,9 +43,9 @@ class RegistrationController extends Controller
     {
 
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
-            $routeHome = $this->generateUrl('homepage');
+            $homeRoute = $this->generateUrl('homepage');
 
-            return new RedirectResponse($routeHome);
+            return new RedirectResponse($homeRoute);
         }
 
         /** @var $formFactory FactoryInterface */

@@ -28,9 +28,9 @@ class SecurityController extends Controller
     public function loginAction(Request $request)
     {
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
-            $routeHome = $this->generateUrl('homepage');
+            $homeRoute = $this->generateUrl('homepage');
 
-            return new RedirectResponse($routeHome);
+            return new RedirectResponse($homeRoute);
         }
 
         /** @var $session \Symfony\Component\HttpFoundation\Session\Session */

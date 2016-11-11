@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class taskController extends Controller
 {
     /**
-     * @Route("/tasks")
+     * @Route("/tasks", name="tasks")
      */
     public function tasksAction()
     {
