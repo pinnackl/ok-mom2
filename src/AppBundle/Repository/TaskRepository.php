@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Repository;
+use DateTime;
 
 /**
  * TaskRepository
@@ -15,9 +16,8 @@ class TaskRepository extends \Doctrine\ORM\EntityRepository
 	{
 	    $q = $this
 	        ->createQueryBuilder('t')
-	        // ->where('DATE_FORMAT(t.start ,'%Y-%m-%d') = :day')
-	        // ->andWhere('1') // User family
-	        // ->setParameter('day', $day)
+	        ->where('t.start = :day')
+	        ->setParameter('day', new Datetime($day), \Doctrine\DBAL\Types\Type::DATETIME)
 	        ->getQuery();
 
 	    return $q->getResult();

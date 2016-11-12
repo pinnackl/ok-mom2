@@ -23,7 +23,7 @@ class taskController extends Controller
         $selected = new \DateTime($date);
 
         $em = $this->getDoctrine()->getManager();
-        $tasks = $em->getRepository('AppBundle:Task')->findTasksByDay(1, $today);
+        $tasks = $em->getRepository('AppBundle:Task')->findTasksByDay(1, $date);
 
 
         $days = array();
