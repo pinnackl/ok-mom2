@@ -10,4 +10,16 @@ namespace AppBundle\Repository;
  */
 class TaskRepository extends \Doctrine\ORM\EntityRepository
 {
+
+	public function findTasksByDay($familyId, $day, $page = 1)
+	{
+	    $q = $this
+	        ->createQueryBuilder('t')
+	        // ->where('DATE_FORMAT(t.start ,'%Y-%m-%d') = :day')
+	        // ->andWhere('1') // User family
+	        // ->setParameter('day', $day)
+	        ->getQuery();
+
+	    return $q->getResult();
+	}
 }

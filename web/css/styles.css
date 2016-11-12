@@ -215,7 +215,7 @@ footer .link img {
 }
 
 .main-container {
-    margin-top: 64px;
+    margin-top: 32px;
 }
 
 /***************/
@@ -229,12 +229,107 @@ footer .link img {
 }
 
 .tasks .card {
-    height: 170px;
+    height: 190px;
 }
 
 .tasks .card .card-title {
     display: block;
 }
+
+.tasks .card .card-title .title {
+    display: inline-block;
+    max-width: 80%;
+    cursor: pointer;
+}
+
+.tasks .card .time-line {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.tasks .card .time-line .details-link {
+    text-align: right;
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+    align-self: auto;
+}
+
+.tasks .card .time-line .date {
+    font-weight: 400;
+    font-size: 0.8em;
+    color: #9D9FB1;
+}
+
+.tasks .card .time-line .line {
+    display: inline-block;
+    margin-left: 12px;
+}
+
+.tasks .pagination.datetime {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.tasks .pagination.datetime li .day-month {
+    font-size: 0.6em;
+    line-height: 90%;
+    color: #9D9FB1;
+}
+
+.tasks .pagination.datetime .active {
+    border-bottom: solid 2px #179BD7;
+    background-color: transparent;
+}
+
+.tasks .pagination.datetime li:not(.arrow):hover {
+    border-bottom: solid 2px #179BD7;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    -ms-transition: all 0.1s linear;
+    -o-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+}
+
+.tasks .pagination.datetime a.link {
+    width: 100%;
+}
+
+.tasks .pagination.datetime .active a {
+    color: #9D9FB1;
+}
+
+.tasks .carousel,
+.tasks .carousel li,
+.tasks .carousel .carousel-slider li {
+    height: 53px !important;
+    min-height: 53px !important;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.tasks .pagination li i {
+    vertical-align: middle;
+}
+
+.today-btn {
+    background-color: #179BD7;
+    margin-left: 12px;
+}
+
+/***/
+/***/
+/***/
 
 .mobile-fab-tip {
     position: fixed;
