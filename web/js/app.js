@@ -25,7 +25,7 @@ var app = (function ($, document, app) {
         var $carousel = $('.tasks .carousel');
             $carousel.carousel({full_width: true});
             $carousel.carousel('set', idx);
-        console.log($('.pagination.datetime .prev'));
+
         helper.addListener($('.pagination.datetime .prev'), 'click', function (e) {
             $carousel.carousel('prev');
         });

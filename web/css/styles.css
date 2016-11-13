@@ -218,6 +218,29 @@ footer .link img {
     margin-top: 32px;
 }
 
+.btn {
+    background-color: #179BD7;
+}
+
+/**************/
+/* Home page */
+/**************/
+.landing {
+    color: #ffffff;
+    text-align: center;
+}
+
+.landing .logo {
+    height: 200px;
+}
+
+.landing h1 {
+    font-weight: 300;
+    font-size: 45px;
+    margin: 0 0 12px 0;
+}
+
+
 /***************/
 /* Task styles */
 /***************/
