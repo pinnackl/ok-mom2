@@ -79,6 +79,9 @@ fos_user:
         confirmation:
             enabled:    true
             template:   FOSUserBundle:Registration:email.txt.twig
+    profile:
+        form:
+            type: FOSChildBundle\Form\Type\ProfileFormType
 
 #MaterializeBundle
 materialize:
