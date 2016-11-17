@@ -270,7 +270,7 @@ footer .link img {
 }
 
 /* valid color */
-.input-field input[type=text].valid {
+.input-field input.valid {
     border-bottom: 1px solid #179BD7;
     box-shadow: 0 1px 0 0 #179BD7;
 }
