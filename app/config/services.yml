@@ -4,8 +4,8 @@ parameters:
 #    parameter_name: value
 
 services:
-   	app.guid:
-       	class: AppBundle\Service\Guid
+    app.guid:
+        class: AppBundle\Service\Guid
     app.form.profile:
         class: FOSChildBundle\Form\Type\ProfileFormType
         tags:
