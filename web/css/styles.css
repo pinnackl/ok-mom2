@@ -222,9 +222,9 @@ footer .link img {
     background-color: #179BD7;
 }
 
-/**************/
-/* Home page */
-/**************/
+/***************/
+/*  Home page  */
+/***************/
 .landing {
     color: #ffffff;
     text-align: center;
@@ -240,12 +240,55 @@ footer .link img {
     margin: 0 0 12px 0;
 }
 
+/***************/
+/*  Form page  */
+/***************/
+.container.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+}
+
+.container.form .input-field input:focus + label {
+    color: #179BD7;
+}
+/* label underline focus color */
+.container.form .input-field input:focus {
+    border-bottom: 1px solid #179BD7;
+    box-shadow: 0 1px 0 0 #179BD7;
+}
+.container.form .content {
+    display: inline-block;
+    padding: 32px 48px 0px 48px;
+    border: 1px solid #EEE;
+}
+
+.container.form [type="checkbox"]:checked+label:before {
+    border-right: 2px solid #179BD7;
+    border-bottom: 2px solid #179BD7;
+}
+
+/* valid color */
+.input-field input[type=text].valid {
+    border-bottom: 1px solid #179BD7;
+    box-shadow: 0 1px 0 0 #179BD7;
+}
+
+.container.form .logo {
+    height: 70px;
+}
+
+.container.form h1 {
+    display: inline-block;
+    font-size: 20px;
+}
 
 /***************/
 /* Task styles */
 /***************/
 
-.tasks h1 {
+h1 {
     font-weight: 300;
     font-size: 45px;
     margin: 0;
