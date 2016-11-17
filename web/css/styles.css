@@ -275,8 +275,12 @@ footer .link img {
     box-shadow: 0 1px 0 0 #179BD7;
 }
 
-.container.form .logo {
+.container.form .logo img {
     height: 70px;
+}
+
+.container.form .logo {
+    text-align: center;
 }
 
 .container.form h1 {

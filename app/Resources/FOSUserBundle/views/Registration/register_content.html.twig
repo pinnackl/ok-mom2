@@ -1,5 +1,5 @@
 {% trans_default_domain 'FOSUserBundle' %}
-{{form_start(form, {'method': 'POST', 'attr':{'class': 'register'}})}}
+{{form_start(form, {'method': 'POST', 'attr':{'class': 'register col s12'}})}}
 
 <div class="row">
     <div class="input-field col s12">
@@ -8,32 +8,30 @@
     </div>
 {{ form_errors(form.username) }}
 </div>
-<div class="row no-padding">
+<div class="row">
     <div class="input-field col s12">
       {{ form_label(form.email) }}
       {{ form_widget(form.email) }}
     </div>
 {{ form_errors(form.email) }}
 </div>
-<div class="row no-padding">
+<div class="row">
     <div class="input-field col s12">
       {{ form_label(form.plainPassword.first) }}
       {{ form_widget(form.plainPassword.first) }}
     </div>
 {{ form_errors(form.plainPassword.first) }}
 </div>
-<div class="row no-padding">
+<div class="row">
     <div class="input-field col s12">
       {{ form_label(form.plainPassword.second) }}
       {{ form_widget(form.plainPassword.second) }}
     </div>
 {{ form_errors(form.plainPassword.second) }}
 </div>
-<div align="center" class="button-wrap">
-    <button class="btn-large waves-effect waves-light indigo" type="submit" name="action">
-      {{ 'registration.submit'|trans }}
-      <i class="material-icons"></i>
-    </button>
+<div class='row'>
+    <input class='col s12 btn btn-large waves-effect' type="submit" id="_submit" name="action"
+      value="{{'registration.submit'|trans}}">
 </div>
 
 {{ form_end(form) }}

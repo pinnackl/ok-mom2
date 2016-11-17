@@ -1,15 +1,14 @@
 {% extends "base.html.twig" %}
 {% block content %}
+<div class="container form col s12">
     <div class="row">
-        <div class="col s12">
-            <div class="">
-                <h4 class="card-panel">S'inscrire</h4>
-            </div>
+        <div class="logo">
+            <img src="/images/pinnackl.svg" alt="Pinnackl">
         </div>
-        <div class="col s12">
-            <div class="">
-                {% include "FOSUserBundle:Registration:register_content.html.twig" %}
-            </div>
-        </div>
+        <h1>Create your OK Mom Account</h1>
     </div>
+    <div class="z-depth-1 grey lighten-4 row content">
+        {% include "FOSUserBundle:Registration:register_content.html.twig" %}
+    </div>
+</div>
 {% endblock content %}
