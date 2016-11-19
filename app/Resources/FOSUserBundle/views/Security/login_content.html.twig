@@ -1,14 +1,18 @@
-{% trans_default_domain 'FOSUserBundle' %}
+{% block content %}
+    {% trans_default_domain 'FOSUserBundle' %}
 
 {% if error %}
     <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 {% endif %}
 
-
-<div class="section"></div>
-<div class="section"></div>
-<div class="container">
-    <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+<div class="container form col s12">
+    <div class="row">
+        <div class="logo">
+            <img src="/images/pinnackl.svg" alt="Pinnackl">
+        </div>
+        <h1>Log in your OK Mom Account</h1>
+    </div>
+    <div class="z-depth-1 grey lighten-4 row content">
         <form class="col s12" action="{{ path("fos_user_security_check") }}" method="post">
             {% if csrf_token %}
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
@@ -34,10 +38,15 @@
             </div>
 
             <div class='row'>
-                <input class='col s12 btn btn-large waves-effect indigo' type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+                <input class='col s12 btn btn-large waves-effect' type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
             </div>
-
-            <a href="{{ path('fos_user_resetting_request') }}">Forgot password ?</a>    
+            <div class="row">
+                <a href="{{ path('fos_user_resetting_request') }}">Forgot password?</a>
+            </div>
         </form>
     </div>
+    <div class="row">
+        <a class="row" href="{{url('homepage')}}register" title="Create account">Create account</a>
+    </div>   
 </div>
+{% endblock %}
