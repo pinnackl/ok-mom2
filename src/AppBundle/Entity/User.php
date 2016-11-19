@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Security\Core\Util\SecureRandom;
+use Doctrine\Common\Annotations;
 
 /**
  * User
@@ -38,11 +39,16 @@ class User extends BaseUser
      */
     protected $profilePicturePath;
 
+    /**
+   * @ORM\ManyToOne(targetEntity="Family")
+   * @ORM\JoinColumn(name="family_id", referencedColumnName="id",nullable=true)
+   */
+    protected $family;
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -61,7 +67,7 @@ class User extends BaseUser
 
     /**
      * Sets the file used for profile picture uploads
-     * 
+     *
      * @param UploadedFile $file
      * @return object
      */
@@ -82,7 +88,7 @@ class User extends BaseUser
 
     /**
      * Get the file used for profile picture uploads
-     * 
+     *
      * @return UploadedFile
      */
     public function getProfilePictureFile() {
@@ -106,7 +112,7 @@ class User extends BaseUser
     /**
      * Get profilePicturePath
      *
-     * @return string 
+     * @return string
      */
     public function getProfilePicturePath()
     {
@@ -124,7 +130,7 @@ class User extends BaseUser
 
     /**
      * Get root directory for file uploads
-     * 
+     *
      * @return string
      */
     protected function getUploadRootDir($type='profilePicture') {
@@ -135,7 +141,7 @@ class User extends BaseUser
 
     /**
      * Specifies where in the /web directory profile pic uploads are stored
-     * 
+     *
      * @return string
      */
     protected function getUploadDir($type='profilePicture') {
@@ -147,12 +153,12 @@ class User extends BaseUser
 
     /**
      * Get the web path for the user
-     * 
+     *
      * @return string
      */
     public function getWebProfilePicturePath() {
 
-        return '/'.$this->getUploadDir().'/'.$this->getProfilePicturePath(); 
+        return '/'.$this->getUploadDir().'/'.$this->getProfilePicturePath();
     }
 
     /**
@@ -170,7 +176,7 @@ class User extends BaseUser
 
     /**
      * Generates a 32 char long random filename
-     * 
+     *
      * @return string
      */
     public function generateRandomProfilePictureFilename() {
@@ -189,9 +195,9 @@ class User extends BaseUser
     /**
      * @ORM\PostPersist()
      * @ORM\PostUpdate()
-     * 
+     *
      * Upload the profile picture
-     * 
+     *
      * @return mixed
      */
     public function uploadProfilePicture() {
@@ -222,5 +228,28 @@ class User extends BaseUser
         if ($file = $this->getProfilePictureAbsolutePath() && file_exists($this->getProfilePictureAbsolutePath())) {
             unlink($file);
         }
+    }
+
+    /**
+     * Get familyId
+     *
+     * @return integer
+     */
+    public function getFamily()
+    {
+        return $this->family_id;
+    }
+
+    /**
+     * Set familyId
+     *
+     * @param integer $familyId
+     * @return User
+     */
+    public function setFamily($familyId)
+    {
+        $this->family_id = $familyId;
+
+        return $this;
     }
 }
