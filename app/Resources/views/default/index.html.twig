@@ -7,6 +7,14 @@
     <div class="filter"></div>
 {% endblock %}
 
-{% block body %}
-    <h1>Home</h1>
+{% block content %}
+    <div class="landing">
+        <div>
+            <img class="logo" src="{{ asset('images/pinnackl.svg') }}" alt="">
+            <h1>A place to schedule all your tasks with your family.</h1>
+        </div>
+        <div>
+            <a class="btn btn-large" href="{{url('tasks')}}" title="Go to OK Mom">Go to OK Mom</a>
+        </div>
+    </div>
 {% endblock %}
