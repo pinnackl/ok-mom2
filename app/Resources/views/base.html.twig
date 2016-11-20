@@ -33,7 +33,8 @@
                                     <span class="new badge red">1</span></a></li>
                                 <li>
                                     <a href="{{url('homepage')}}profile" tabindex="1">
-                                        <img class="user-avatar" src="http://placehold.it/56/56">
+                                        <img class="user-avatar" src="{{url('homepage')}}{{app.user.getWebProfilePicturePath}}" height="56px" width="56px">
+                                        <!-- <img class="user-avatar" src="http://placehold.it/56/56"> -->
                                         {{app.user.username}}
                                     </a>
                                 </li>
