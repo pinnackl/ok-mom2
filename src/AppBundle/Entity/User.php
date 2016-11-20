@@ -73,7 +73,7 @@ class User extends BaseUser
      */
     public function setProfilePictureFile(UploadedFile $file = null) {
         // set the value of the holder
-        $this->profilePictureFile       =   $file;
+        $this->profilePictureFile = $file;
          // check if we have an old image path
         if (isset($this->profilePicturePath)) {
             // store the old name to delete after the update
@@ -82,7 +82,7 @@ class User extends BaseUser
         } else {
             $this->profilePicturePath = 'initial';
         }
-
+        $this->preUploadProfilePicture();
         return $this;
     }
 
@@ -136,7 +136,7 @@ class User extends BaseUser
     protected function getUploadRootDir($type='profilePicture') {
         // the absolute directory path where uploaded
         // documents should be saved
-        return __DIR__.'/../../../../web/'.$this->getUploadDir($type);
+        return __DIR__.'/../../../web/'.$this->getUploadDir($type);
     }
 
     /**
@@ -171,6 +171,8 @@ class User extends BaseUser
             // generate a unique filename
             $filename = $this->generateRandomProfilePictureFilename();
             $this->setProfilePicturePath($filename.'.'.$this->getProfilePictureFile()->guessExtension());
+
+            $this->uploadProfilePicture();
         }
     }
 
@@ -180,15 +182,12 @@ class User extends BaseUser
      * @return string
      */
     public function generateRandomProfilePictureFilename() {
-        $count                  =   0;
-        do {
-            $generator = new SecureRandom();
-            $random = $generator->nextBytes(16);
-            $randomString = bin2hex($random);
-            $count++;
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < 15; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
-        while(file_exists($this->getUploadRootDir().'/'.$randomString.'.'.$this->getProfilePictureFile()->guessExtension()) && $count < 50);
-
         return $randomString;
     }
 
