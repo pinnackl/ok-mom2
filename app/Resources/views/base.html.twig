@@ -33,8 +33,11 @@
                                     <span class="new badge red">1</span></a></li>
                                 <li>
                                     <a href="{{url('homepage')}}profile" tabindex="1">
-                                        <img class="user-avatar" src="{{url('homepage')}}{{app.user.getWebProfilePicturePath}}" height="56px" width="56px">
-                                        <!-- <img class="user-avatar" src="http://placehold.it/56/56"> -->
+                                        {% if app.user.profilePicturePath %}
+                                            <img class="user-avatar" src="{{app.user.getWebProfilePicturePath}}" height="56px" width="56px">
+                                        {% else %}
+                                            <img class="user-avatar" src="http://placehold.it/56/56">
+                                        {% endif %}
                                         {{app.user.username}}
                                     </a>
                                 </li>
@@ -56,7 +59,12 @@
                                     <div class="filter"></div>
                                     <a href="{{url('homepage')}}profile" class="user-avt" tabindex="-1">
                                         <div class="avt">
-                                            <img class="user-avatar" src="http://placehold.it/56/56"></div>
+                                            {% if app.user.profilePicturePath %}
+                                                <img class="user-avatar" src="{{app.user.getWebProfilePicturePath}}" height="56px" width="56px">
+                                            {% else %}
+                                                <img class="user-avatar" src="http://placehold.it/56/56">
+                                            {% endif %}
+                                        </div>
                                         <div class="nav-usr-name">{{app.user.username}}</div>
                                         <div class="nav-usr-email">{{app.user.email}}</div>
                                     </a>
