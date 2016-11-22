@@ -11,6 +11,7 @@
 
 namespace FOSChildBundle\Controller;
 
+use AppBundle\Entity\Family;
 use FOS\UserBundle\Event\FilterUserResponseEvent;
 use FOS\UserBundle\Event\FormEvent;
 use FOS\UserBundle\Event\GetResponseUserEvent;
@@ -79,6 +80,35 @@ class RegistrationController extends Controller
 
                 $userManager->updateUser($user);
 
+                if($request->request->get('invitation') != null){
+
+                    $invitation = $request->request->get('invitation');
+                    $repository = $this->getDoctrine()->getRepository('AppBundle:Family');
+                    $family = $repository->findOneByUuid($invitation);
+
+                    if($family){
+                        $user->setFamily($family->getId());
+                    }
+
+                } else {
+
+                    $name = $form["username"]->getData() . " Family";
+
+                    $family = new Family();
+                    $family->setName($name);
+                    $family->setOwner($user->getId());
+                    $family->setUuid(bin2hex(random_bytes(18)));
+
+                    $em = $this->getDoctrine()->getManager();
+
+                    // tells Doctrine you want to (eventually) save the Product (no queries yet)
+                    $em->persist($family);
+
+                    // actually executes the queries (i.e. the INSERT query)
+                    $em->flush();
+
+                }
+
                 if (null === $response = $event->getResponse()) {
                     $url = $this->getParameter('fos_user.registration.confirmation.enabled')
                         ? $this->generateUrl('fos_user_registration_confirmed')
@@ -86,6 +116,8 @@ class RegistrationController extends Controller
 
                     $response = new RedirectResponse($url);
                 }
+
+                $userManager->updateUser($user);
 
                 $dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
 
