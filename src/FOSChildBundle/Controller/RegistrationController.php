@@ -89,7 +89,7 @@ class RegistrationController extends Controller
                     $family = $repository->findOneByUuid($invitation);
 
                     if($family){
-                        $user->setFamily($family->getId());
+                        $user->setFamily($family);
                     }
 
                 } else {
