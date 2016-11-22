@@ -109,7 +109,7 @@ class RegistrationController extends Controller
                     // actually executes the queries (i.e. the INSERT query)
                     $em->flush();
 
-                    $user->setFamily($family->getId());
+                    $user->setFamily($family);
 
                 }
 
