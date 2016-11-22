@@ -80,6 +80,8 @@ class RegistrationController extends Controller
 
                 $userManager->updateUser($user);
 
+
+
                 if($request->request->get('invitation') != null){
 
                     $invitation = $request->request->get('invitation');
@@ -107,7 +109,12 @@ class RegistrationController extends Controller
                     // actually executes the queries (i.e. the INSERT query)
                     $em->flush();
 
+                    $user->setFamily($family->getId());
+
                 }
+
+                $userManager->updateUser($user);
+
 
                 if (null === $response = $event->getResponse()) {
                     $url = $this->getParameter('fos_user.registration.confirmation.enabled')
@@ -116,8 +123,6 @@ class RegistrationController extends Controller
 
                     $response = new RedirectResponse($url);
                 }
-
-                $userManager->updateUser($user);
 
                 $dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
 
