@@ -24,7 +24,8 @@
         "incenteev/composer-parameter-handler": "^2.0",
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "evheniy/materialize-bundle": "^1.2",
-        "javiereguiluz/easyadmin-bundle": "^1.15"
+        "javiereguiluz/easyadmin-bundle": "^1.15",
+        "nesbot/carbon": "^1.21"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
