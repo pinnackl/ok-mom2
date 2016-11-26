@@ -48,3 +48,7 @@
 */Entity/*~
 ok-mom2.sublime-*
 bower_components
+
+# Asset management by npm
+node_modules
+.idea
