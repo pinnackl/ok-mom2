@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Carbon\Carbon;
+
 
 class taskController extends Controller
 {
@@ -15,41 +17,47 @@ class taskController extends Controller
     public function tasksAction(Request $request)
     {
         $page = $request->query->get('page') ?: 1;
-        $today = date('Y/m/d');
-        $date = str_replace('-', '/', $request->query->get('date')) ?: $today;
-        $week = $request->query->get('week') ?: date('W');
-        $year = $request->query->get('year') ?: date('Y');
+        $date = $request->query->get('date') !== null ? Carbon::parse($request->query->get('date')) : Carbon::today();
 
-        $selected = new \DateTime($date);
-
+        // Get all task for the selected day
         $em = $this->getDoctrine()->getManager();
         $tasks = $em->getRepository('AppBundle:Task')->findTasksByDay(1, $date);
 
+        // get the Date service
+        $ds = $this->get('app.date');
 
-        $days = array();
+        // Get the date range
+        $weekStart = $ds->getWeekStart($date);
+        $weekEnd = $ds->getWeekEnd($date);
+        $days = $ds->generateDateRange($weekStart, $weekEnd);
 
-        for ($day = 1; $day <= 7; $day++) {
-            $days[] = new \DateTime(date('Y/m/d', strtotime($year."W".$week.$day)));
-        }
+        // Get the next and previous week
+        $nextWeek = $ds->getNextWeek($date);
+        $pastWeek = $ds->getPreviousWeek($date);
 
-        // Generate links
-
-        // FIXME : Change week links
-        $dateNext = new \DateTime();
-        $dateNext->modify("+1 day");
-
-        $datePast = new \DateTime();
-        $datePast->modify("-1 day");
-
-        $todayLink = $this->generateUrl("tasks", array('date' => str_replace('/', '-', $today)));
+        // Get today link
+        $todayLink = $this->generateUrl("tasks", array('date' => Carbon::now()->format('Y-m-d')));
 
         return $this->render('AppBundle:task:tasks.html.twig', array(
             'tasks' => $tasks,
-            'past' => $datePast,
-            'next' => $dateNext,
+            'nextWeek' => $nextWeek,
+            'pastWeek' => $pastWeek,
             'days' => $days,
-            'selected' => $selected,
+            'selected' => $date,
             'todayLink' => $todayLink,
+        ));
+    }
+
+    /**
+     * @Route("/task/create")
+     */
+    public function taskCreateAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        // $task = $em->getRepository('AppBundle:Task')->findOneById($taskId);
+
+        return $this->render('AppBundle:task:task_create.html.twig', array(
+            // 'task' => $task
         ));
     }
 
