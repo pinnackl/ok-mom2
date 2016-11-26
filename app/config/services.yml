@@ -6,6 +6,8 @@ parameters:
 services:
     app.guid:
         class: AppBundle\Service\Guid
+    app.date:
+        class: AppBundle\Service\Date
     app.form.profile:
         class: FOSChildBundle\Form\Type\ProfileFormType
         tags:
