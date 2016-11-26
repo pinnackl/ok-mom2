@@ -349,6 +349,14 @@ h1 {
   align-content: center;
 }
 
+.tasks .prev i, .next i {
+    font-size: 2.5em;
+}
+
+.waves-effect {
+    overflow: visible !important;
+}
+
 .tasks .pagination.datetime li .day-month {
     font-size: 0.6em;
     line-height: 90%;
@@ -390,6 +398,14 @@ h1 {
 
 .tasks .pagination li i {
     vertical-align: middle;
+}
+
+.week-selector {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    margin-left: 12px;
 }
 
 .today-btn {
