@@ -29,6 +29,7 @@
     </div>
 {{ form_errors(form.plainPassword.second) }}
 </div>
+<input type="hidden" name="invitation" value="{{ app.request.get('invitation')}}">
 <div class='row'>
     <input class='col s12 btn btn-large waves-effect' type="submit" id="_submit" name="action"
       value="{{'registration.submit'|trans}}">

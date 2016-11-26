@@ -7,7 +7,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Security\Core\Util\SecureRandom;
-use Doctrine\Common\Annotations;
 
 /**
  * User
@@ -40,7 +39,7 @@ class User extends BaseUser
     protected $profilePicturePath;
 
     /**
-   * @ORM\ManyToOne(targetEntity="Family")
+   * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Family")
    * @ORM\JoinColumn(name="family_id", referencedColumnName="id",nullable=true)
    */
     protected $family;
@@ -239,15 +238,9 @@ class User extends BaseUser
         return $this->family_id;
     }
 
-    /**
-     * Set familyId
-     *
-     * @param integer $familyId
-     * @return User
-     */
-    public function setFamily($familyId)
+    public function setFamily(Family $family)
     {
-        $this->family_id = $familyId;
+        $this->family = $family;
 
         return $this;
     }

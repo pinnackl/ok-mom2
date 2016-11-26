@@ -11,6 +11,7 @@
 
 namespace FOSChildBundle\Controller;
 
+use AppBundle\Entity\Family;
 use FOS\UserBundle\Event\FilterUserResponseEvent;
 use FOS\UserBundle\Event\FormEvent;
 use FOS\UserBundle\Event\GetResponseUserEvent;
@@ -78,6 +79,42 @@ class RegistrationController extends Controller
                 $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
 
                 $userManager->updateUser($user);
+
+
+
+                if($request->request->get('invitation') != null){
+
+                    $invitation = $request->request->get('invitation');
+                    $repository = $this->getDoctrine()->getRepository('AppBundle:Family');
+                    $family = $repository->findOneByUuid($invitation);
+
+                    if($family){
+                        $user->setFamily($family);
+                    }
+
+                } else {
+
+                    $name = $form["username"]->getData() . " Family";
+
+                    $family = new Family();
+                    $family->setName($name);
+                    $family->setOwner($user->getId());
+                    $family->setUuid(bin2hex(random_bytes(18)));
+
+                    $em = $this->getDoctrine()->getManager();
+
+                    // tells Doctrine you want to (eventually) save the Product (no queries yet)
+                    $em->persist($family);
+
+                    // actually executes the queries (i.e. the INSERT query)
+                    $em->flush();
+
+                    $user->setFamily($family);
+
+                }
+
+                $userManager->updateUser($user);
+
 
                 if (null === $response = $event->getResponse()) {
                     $url = $this->getParameter('fos_user.registration.confirmation.enabled')

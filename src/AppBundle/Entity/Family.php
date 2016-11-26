@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Family
@@ -19,28 +20,37 @@ class Family
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
-    private $name;
+    protected $name;
 
     /**
      * @var guid
      *
      * @ORM\Column(name="uuid", type="guid", unique=true)
      */
-    private $uuid;
+    protected $uuid;
 
     /**
      * @var int
      *
      * @ORM\Column(name="owner", type="integer")
      */
-    private $owner;
+    protected $owner;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\User", mappedBy="family")
+     */
+    protected $users;
+
+    public function __construct() {
+        $this->users = new ArrayCollection();
+    }
 
 
     /**
@@ -123,6 +133,23 @@ class Family
     public function getOwner()
     {
         return $this->owner;
+    }
+
+    public function addUser(User $user)
+    {
+        $this->users[] = $user;
+
+        return $this;
+    }
+
+    public function removeUser(User $user)
+    {
+        $this->users->removeElement($user);
+    }
+
+    public function getUsers()
+    {
+        return $this->users;
     }
 }
 
