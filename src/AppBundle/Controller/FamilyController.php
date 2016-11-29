@@ -8,10 +8,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class FamilyController extends Controller
 {
     /**
-     * @Route("/family")
+     * @Route("/family", name="family")
      */
     public function familyAction()
     {
+        $em = $this->getDoctrine()->getManager();
+
+        // $family = $em->getRepository('AppBundle:Family')->find();
+
         return $this->render('AppBundle:Family:family.html.twig', array(
             // ...
         ));

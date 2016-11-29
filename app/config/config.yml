@@ -101,3 +101,4 @@ easy_admin:
     entities:
         - AppBundle\Entity\Task
         - AppBundle\Entity\User
+        - AppBundle\Entity\Family

@@ -17,6 +17,7 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+        {% if active_page is not defined %}{% set active_page = "" %}{% endif %}
         {% block menu %}
             <div class="navbar-fixed">
                 <nav>
@@ -24,16 +25,15 @@
                         {# FIXME : tabindex #}
                         <a href="{{url('homepage')}}" data-activates="mobile" class="button-collapse"><i class="material-icons" tabindex="1">menu</i></a>
                         <a href="{{url('homepage')}}" class="brand-logo" tabindex="1">
+                            <span class="app-name">OK Mom</span>
                             <img src="/images/logo.png" class="logo" alt="">
-                            <span class="">OK Mom</span>
+                            <span>{{active_page|capitalize}}</span>
                         </a>
-                        {% if active_page is not defined %}{% set active_page = "" %}{% endif %}
-                        {# {% set active_page = "" %} #}
                         <ul class="right hide-on-med-and-down">
                             {% if app.user %}
                                 <li {% if "tasks" == active_page %} class="active"{% endif%}><a href="{{url('tasks')}}" title="My Tasks" tabindex="1">MY TASKS
                                     <span class="new badge red">1</span></a></li>
-                                <li><a href="{{url('homepage')}}family" title="My Family" tabindex="1">MY FAMILY</a></li>
+                                <li {% if "family" == active_page %} class="active"{% endif%}><a href="{{url('family')}}" title="My Family" tabindex="1">MY FAMILY</a></li>
                                 <li>
                                     <a href="{{url('homepage')}}profile" tabindex="1">
                                         {% if app.user.profilePicturePath %}

@@ -26,6 +26,17 @@ nav .brand-logo img {
     height: 50px;
 }
 
+nav .brand-logo .app-name {
+    display: inline-block;
+    margin-left: 8px;
+    font-size: .8em;
+    font-weight: 500;
+    transform: rotate(-7deg);
+    -ms-transform: rotate(-7deg);
+    -webkit-transform: rotate(7deg);
+    transform: rotate(-7deg);
+}
+
 nav ul a {
     font-size: 20px;
 }
@@ -39,7 +50,7 @@ nav ul a {
 
 .nav-card .filter {
     height: 160px;
-    width: 101%;
+    width: 100%;
     position: absolute;
     top: 0;
 }
@@ -177,6 +188,82 @@ main {
     background-image: -webkit-linear-gradient(rgba(0,0,0,0.2) 0%,rgba(0,0,0,.2) 75%,rgba(0,0,0,.2) 100%); 
     background-image: linear-gradient(rgba(0,0,0,0.2) 0%,rgba(0,0,0,.2) 75%,rgba(0,0,0,.2) 100%);
     z-index: 2;
+}
+
+/*********/
+/* Intro */
+/*********/
+.intro {
+    width: 100%;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    box-sizing: border-box;
+    padding: 2em 5em;
+}
+
+.intro .flex {
+    height: 100%;
+    display: -ms-flexbox !important;
+    display: -webkit-flex !important;
+    display: flex !important;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-align-content: stretch;
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.intro .carousel {
+    border-radius: 3px;
+}
+
+.intro .btn, .intro .btn-large:hover {
+    background-color: transparent;
+}
+
+.intro .intro-btn {
+    width: 100%;
+    padding: 0 16px 52px 16px;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-align-content: flex-start;
+    -ms-flex-line-pack: start;
+    align-content: flex-start;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.intro .intro-btn .space {
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+    align-self: auto;
 }
 
 .main-container {
@@ -435,4 +522,15 @@ h1 {
 
 .btn-navigation {
     margin-bottom: 16px;
+}
+
+/* Media Query */
+@media only screen and (max-width: 768px) { 
+    .intro {
+        padding: 0;
+    }
+
+    .intro .carousel {
+        height: 90vh !important;
+    }
 }
