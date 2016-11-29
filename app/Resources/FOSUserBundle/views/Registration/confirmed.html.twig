@@ -3,8 +3,65 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
-    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
-    {% if targetUrl %}
-    <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
-    {% endif %}
 {% endblock fos_user_content %}
+
+{% block background %}
+	<div class="valign-wrapper intro">
+        <div class="carousel carousel-slider center valign z-depth-4" data-indicators="true">
+            <div class="carousel-item red white-text" href="#one!">
+                <div class="flex">
+                    <h2>First Panel</h2>
+				    <h3>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</h3>
+				    {% if targetUrl %}
+				    	<p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
+				    {% endif %}
+                    <p class="white-text">This is your first panel</p>
+                    <div class="center intro-btn">
+                        <a class="btn btn-large btn-flat waves-effect white-text skip" href="{{url('tasks')}}">SKIP</a>
+                        <div class="space"></div>
+                        <a class="btn btn-large btn-flat waves-effect white-text next">
+                            <i class="material-icons">keyboard_arrow_right</i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item amber white-text" href="#two!">
+                <div class="flex">
+                    <h2>Second Panel</h2>
+                    <p class="white-text">This is your second panel</p>
+                    <div class="center intro-btn">
+                        <a class="btn btn-large btn-flat waves-effect white-text skip" href="{{url('tasks')}}">SKIP</a>
+                        <div class="space"></div>
+                        <a class="btn btn-large btn-flat waves-effect white-text next">
+                            <i class="material-icons">keyboard_arrow_right</i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item green white-text" href="#three!">
+                <div class="flex">
+                    <h2>Third Panel</h2>
+                    <p class="white-text">This is your third panel</p>
+                    <div class="center intro-btn">
+                        <a class="btn btn-large btn-flat waves-effect white-text skip" href="{{url('tasks')}}">SKIP</a>
+                        <div class="space"></div>
+                        <a class="btn btn-large btn-flat waves-effect white-text next">
+                            <i class="material-icons">keyboard_arrow_right</i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item blue white-text" href="#four!">
+                <div class="flex">
+                    <h2>Fourth Panel</h2>
+                    <p class="white-text">This is your fourth panel</p>
+                    <div class="center intro-btn">
+                        <div class="space"></div>
+                        <a class="btn btn-large btn-flat waves-effect white-text" href="{{url('family')}}">INVITE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/intro.js') }}"></script>
+{% endblock %}
