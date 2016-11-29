@@ -82,7 +82,7 @@ class RegistrationController extends Controller
 
 
 
-                if($request->request->get('invitation') != null){
+                if ($request->request->get('invitation') != null) {
 
                     $invitation = $request->request->get('invitation');
                     $repository = $this->getDoctrine()->getRepository('AppBundle:Family');
@@ -99,7 +99,7 @@ class RegistrationController extends Controller
                     $family = new Family();
                     $family->setName($name);
                     $family->setOwner($user->getId());
-                    $family->setUuid(bin2hex(random_bytes(18)));
+                    $family->setUuid(bin2hex(random_bytes(18))); // FIXME : Use service instead
 
                     $em = $this->getDoctrine()->getManager();
 
