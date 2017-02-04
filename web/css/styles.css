@@ -15,11 +15,16 @@ body {
 
 nav {
     background-color: #179BD7;
+    font-size: 20px;
 }
 
 nav .button-collapse i {
     height: 64px;
     line-height: 64px;
+}
+
+nav .brand-logo {
+    font-size: 20px;
 }
 
 nav .brand-logo img {
@@ -188,6 +193,10 @@ main {
     background-image: -webkit-linear-gradient(rgba(0,0,0,0.2) 0%,rgba(0,0,0,.2) 75%,rgba(0,0,0,.2) 100%); 
     background-image: linear-gradient(rgba(0,0,0,0.2) 0%,rgba(0,0,0,.2) 75%,rgba(0,0,0,.2) 100%);
     z-index: 2;
+}
+
+.ucfirst {
+    text-transform: capitalize;
 }
 
 /*********/
@@ -378,11 +387,25 @@ footer .link img {
 /***************/
 /* Task styles */
 /***************/
+h1, h2 {
+    margin: 0;
+}
 
 h1 {
     font-weight: 300;
     font-size: 45px;
-    margin: 0;
+}
+
+h2 {
+    font-weight: 300;
+    font-size: 25px;
+}
+
+.tasks .flex {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .tasks .card {
@@ -487,17 +510,27 @@ h1 {
     vertical-align: middle;
 }
 
+.tasks .sunset-empty img {
+    height: 40vh;
+}
+
+.tasks h2.task-title {
+    font-size: 20px;
+}
+
+.tasks .task-time i {
+    vertical-align: middle;
+}
+
 .week-selector {
     display: flex;
     justify-content: space-between;
     align-items: center;
     align-content: center;
-    margin-left: 12px;
 }
 
 .today-btn {
     background-color: #179BD7;
-    margin-left: 12px;
 }
 
 /***/

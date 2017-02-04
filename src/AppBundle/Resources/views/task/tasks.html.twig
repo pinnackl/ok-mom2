@@ -5,22 +5,10 @@
 
 {% block content %}
     <div class="tasks">
-        <h1>Welcome {{app.user.username}}!</h1>
+        <h1><span class="hide-on-med-and-down">Welcome </span><span class="ucfirst">{{app.user.username}}!</span></h1>
         <hr>
-        <div class="pagination datetime">
-            <div class="arrow waves-effect prev"><a tabindex="1"><i class="material-icons">chevron_left</i></a></div>
-            <ul class="carousel carousel-slider center">
-                {% for day in days %}
-                    <li class="carousel-item {{day|date("m/d/Y") == selected|date("m/d/Y") ? "active" : ""}}">
-                        <a class="link" href="{{url('tasks')}}?date={{day|date("Y-m-d")}}" tabindex="-1">
-                            <span>{{day|date("l")}}</span>
-                            <div class="day-month">{{day|date("d F")}}</div>
-                        </a>
-                    </li>
-                {% endfor %}
-            </ul>
-            <div class="arrow waves-effect next"><a tabindex="1"><i class="material-icons">chevron_right</i></a></div>
-            <div>
+        <div class="pagination datetime row">
+            <div class="col s4 center">
                 <div class="week-selector">
                     <a href="{{url('tasks')}}?date={{pastWeek|date("Y-m-d")}}" class="waves-effect" tabindex="1">
                         <i class="material-icons">chevron_left</i></a>
@@ -34,37 +22,65 @@
                 </div>
                 <a class="btn today-btn" href="{{todayLink}}" title="TODAY">TODAY</a>
             </div>
+            <div class="col s8 center flex">
+                <div class="arrow waves-effect prev"><a tabindex="1"><i class="material-icons">chevron_left</i></a></div>
+                <ul class="week carousel carousel-slider center">
+                    {% for day in days %}
+                        <li class="carousel-item {{day|date("m/d/Y") == selected|date("m/d/Y") ? "active" : ""}}">
+                            <a class="link" href="{{url('tasks')}}?date={{day|date("Y-m-d")}}" tabindex="-1">
+                                <span>{{day|date("l")}}</span>
+                                <div class="day-month">{{day|date("d F")}}</div>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <div class="arrow waves-effect next"><a tabindex="1"><i class="material-icons">chevron_right</i></a></div>
+                
+            </div>
         </div>
-        {% for task in tasks %}
-            <div class="card hoverable">
-                <div class="card-content">
-                    <span class="card-title grey-text activator text-darken-4">
-                        <span class="truncate title activator">{{task.title}}</span>
-                        <i class="material-icons right">more_vert</i>
-                    </span>
-                    <div class="time-line">
-                        <div class="line"><span class="date">Start:</span><br><span>{{task.start|date("H:i")}}</div>
-                        <div class="line"><span class="date">End:</span><br><span>{{task.end|date("H:i")}}</div>
-                        <a class="details-link" href="{{url('homepage')}}task/{{task.id}}">MORE</a>
+        <div class="row">
+            <div class="col s12 m12 l8 row">
+                {% if tasks is not empty %}
+                    <h2 class="task-title">Today tasks</h2>
+                {% endif %}
+                {% for task in tasks %}
+                    <div class="card hoverable">
+                        <div class="card-content">
+                            <span class="card-title grey-text activator text-darken-4">
+                                <span class="truncate title activator">{{task.title}}</span>
+                                <i class="material-icons right">more_vert</i>
+                            </span>
+                            <div class="time-line">
+                                <div class="line"><span class="date">Start:</span><br><span class="task-time"><i class="material-icons">event</i>{{task.start|date("H:i")}}</div>
+                                <div class="line"><span class="date">End:</span><br><span class="task-time"><i class="material-icons">event</i>{{task.end|date("H:i")}}</div>
+                                <a class="details-link" href="{{url('homepage')}}task/{{task.id}}">MORE</a>
+                            </div>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">
+                                <span class="title activator">{{task.title}}</span>
+                                <i class="material-icons right">close</i></span>
+                            <p>{{task.description}}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">
-                        <span class="title activator">{{task.title}}</span>
-                        <i class="material-icons right">close</i></span>
-                    <p>{{task.description}}</p>
-                </div>
+                {% endfor %}
+                {% if tasks is empty %}
+                    <div class="sunset-empty center">
+                        <img class="responsive-img circle z-depth-2" src="{{asset('images/sunset.png')}}">
+                        <h2>There is no tasks today!</h2>
+                    </div>
+                {% endif %}
             </div>
-        {% endfor %}
-        {% if tasks is empty %}
-            <h2>There is no tasks today!</h2>
-        {% endif %}
-        {% block fab %}
-            <div class="fixed-action-btn">
-                <a class="btn-floating btn-large red" href="{{url('homepage')}}task/create">
-                    <i class="large material-icons">add</i>
-                </a>
+            <div class="col s12 m12 l4 row">
+                <h2 class="task-title">Next tasks of the week</h2>
             </div>
-        {% endblock %}
+            {% block fab %}
+                <div class="fixed-action-btn">
+                    <a class="btn-floating btn-large red" href="{{url('homepage')}}task/create">
+                        <i class="large material-icons">add</i>
+                    </a>
+                </div>
+            {% endblock %}
+        </div>
     </div>
 {% endblock %}

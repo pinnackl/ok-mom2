@@ -53,7 +53,8 @@ class Date
     public function getPreviousWeek(Carbon $date)
     {
         $pastWeek = Carbon::parse($date->format('Y-m-d'));
-        $pastWeek = $pastWeek->previous(carbon::MONDAY);
+        $pastWeek->startOfWeek();
+        $pastWeek->previous(carbon::MONDAY);
 
         return $pastWeek;
     }
