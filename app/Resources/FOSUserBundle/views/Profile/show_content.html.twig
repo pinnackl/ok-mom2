@@ -1,7 +1,19 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="fos_user_user_show">
-    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
-    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
-    <a href="{{url('homepage')}}profile/edit">EDIT</a>
+<div class="user-ctn z-depth-1 grey lighten-4 row content">
+    <div class="user-cover">
+        <div class="user-avt">
+            {% if user.profilePicturePath %}
+                <img class="user-avatar" src="{{user.getWebProfilePicturePath}}" height="128px" width="128px">
+            {% else %}
+                <img class="user-avatar" src="http://placehold.it/56/56">
+            {% endif %}
+            <div>
+                <h2 class="user-name">{{user.username}}</h2>
+                <div class="family-role">Role : {% if 'ROLE_PARENT' in user.roles %}Parent{% endif %}</div>
+                <span class="badge"><a href="#/family" title="">{{family.name}}</a></span>
+            </div>
+        </div>
+        <a class="waves-effect waves-light btn">Edit</a>
+    </div>
 </div>

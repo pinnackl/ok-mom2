@@ -533,6 +533,36 @@ h2 {
     background-color: #179BD7;
 }
 
+/* User section */
+.user-ctn {
+    padding: 1em;
+}
+
+.user-ctn .user-cover {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-ctn .user-avt {
+    display: flex;
+    align-items: center;   
+}
+
+.user-ctn .user-avt .badge, .user-ctn .user-avt .badge a {
+    color: #ffffff;
+    background-color: #179BD7;
+    border-radius: 2px;
+    font-weight: 300;
+    font-size: 1.2rem;
+}
+
+.user-ctn .user-cover .user-name,
+.user-ctn .user-cover .family-role {
+    margin-left: 16px;
+    margin-bottom: 8px;
+}
+
 /***/
 /***/
 /***/
