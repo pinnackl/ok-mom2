@@ -235,7 +235,7 @@ class User extends BaseUser
      */
     public function getFamily()
     {
-        return $this->family_id;
+        return $this->family;
     }
 
     public function setFamily(Family $family)
