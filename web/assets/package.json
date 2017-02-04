@@ -1,0 +1,15 @@
+{
+  "name": "ok-mom",
+  "version": "1.0.0",
+  "description": "A children-parent todo list",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pinnackl/ok-mom2/"
+  },
+  "author": "Pinnackl",
+  "license": "ISC"
+}
