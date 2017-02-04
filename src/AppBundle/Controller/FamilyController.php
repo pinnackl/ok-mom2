@@ -14,10 +14,16 @@ class FamilyController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        // $family = $em->getRepository('AppBundle:Family')->find();
+        $user = $this->getUser();
+        $familyId = $user->getFamily();
+
+        $family = $em->getRepository('AppBundle:Family')->find($familyId);
+
+        $familyMember = $em->getRepository('AppBundle:User')->findByFamily($familyId);
 
         return $this->render('AppBundle:Family:family.html.twig', array(
-            // ...
+            'family' => $family,
+            'familyMember' => $familyMember
         ));
     }
 

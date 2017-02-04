@@ -563,6 +563,26 @@ h2 {
     margin-bottom: 8px;
 }
 
+.family-info, .family-members {
+    min-height: 90vh!important;
+}
+
+.family-info .name-row {
+    padding: 0 0 1em 0;
+}
+
+.family-members .card-image {
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.family-members .card-image img {
+    width: 128px;
+    min-width: 128px;
+    height: 128px;
+    min-height: 128px;
+}
+
 /***/
 /***/
 /***/
@@ -595,5 +615,9 @@ h2 {
 
     .intro .carousel {
         height: 90vh !important;
+    }
+
+    .family-info, .family-members {
+        min-height: auto!important;
     }
 }
