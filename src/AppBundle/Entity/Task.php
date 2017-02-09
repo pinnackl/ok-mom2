@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -26,6 +27,7 @@ class Task
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $title;
 
@@ -33,6 +35,7 @@ class Task
      * @var string
      *
      * @ORM\Column(name="description", type="text")
+     * @Assert\NotBlank()
      */
     private $description;
 
@@ -40,6 +43,7 @@ class Task
      * @var \DateTime
      *
      * @ORM\Column(name="start", type="datetime")
+     * @Assert\NotBlank()
      */
     private $start;
 
@@ -47,6 +51,7 @@ class Task
      * @var \DateTime
      *
      * @ORM\Column(name="end", type="datetime")
+     * @Assert\NotBlank()
      */
     private $end;
 
@@ -86,6 +91,7 @@ class Task
      *      joinColumns={@ORM\JoinColumn(name="task_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
      *      )
+     * @Assert\NotBlank()
      */
     private $users;
 
@@ -289,5 +295,46 @@ class Task
     public function getAllday()
     {
         return $this->allday;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Task
+     */
+    public function addUser(\AppBundle\Entity\User $user)
+    {
+        $this->users[] = $user;
+
+        return $this;
+    }
+
+    /**
+     * Remove user
+     *
+     * @param \AppBundle\Entity\User $user
+     */
+    public function removeUser(\AppBundle\Entity\User $user)
+    {
+        $this->users->removeElement($user);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }

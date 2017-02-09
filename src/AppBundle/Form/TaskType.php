@@ -17,7 +17,7 @@ class TaskType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class, array('attr'=> array('class'=>'span2')))
+            ->add('title', TextType::class)
             ->add('description', TextareaType::class)
             ->add('allday', CheckboxType::class, array(
                 'label'    => 'All day',
@@ -26,8 +26,7 @@ class TaskType extends AbstractType
             ->add('start', DateType::class, array('widget' => 'single_text'))
             ->add('end', DateType::class, array('widget' => 'single_text'))
 
-            ->add('family', EntityType::class, array(
-                'mapped' => false,
+            ->add('users', EntityType::class, array(
                 // query choices from this entity
                 'class' => 'AppBundle:User',
                 'query_builder' => function (EntityRepository $er) use ($options) {
@@ -35,7 +34,7 @@ class TaskType extends AbstractType
                     return $er->createQueryBuilder('u')
                         ->where('u.family = ?1')
                         ->orderBy('u.username', 'ASC')
-                        ->setParameter(1, $options['constraints']);
+                        ->setParameter(1, $options['attr']['data-family']);
                 },
                 // use the User.username property as the visible option string
                 'choice_label' => 'username',

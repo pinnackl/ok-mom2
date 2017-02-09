@@ -64,10 +64,15 @@ class taskController extends Controller
 
         $user = $this->getUser();
         $familyId = $user->getFamily();
+        $family = $em->getRepository('AppBundle:Family')->find($familyId);
 
         $task = new Task();
 
-        $form = $this->createForm(TaskType::class, $task, array('constraints' => $familyId));
+        $task->setCreated(new \DateTime());
+        $task->setUpdated(new \DateTime());
+        $task->setCompleted(new \DateTime());
+
+        $form = $this->createForm(TaskType::class, $task, array('attr' => array('data-family' => $family->getId())));
 
         $form->handleRequest($request);
 
@@ -76,8 +81,8 @@ class taskController extends Controller
             // but, the original `$task` variable has also been updated
             $task = $form->getData();
 
-            // $em->persist($task);
-            // $em->flush();
+            $em->persist($task);
+            $em->flush();
 
             return $this->redirectToRoute('tasks');
         }
