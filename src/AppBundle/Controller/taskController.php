@@ -6,8 +6,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
 use Carbon\Carbon;
 
+use AppBundle\Entity\Task;
+use AppBundle\Form\TaskType;
 
 class taskController extends Controller
 {
@@ -54,10 +61,30 @@ class taskController extends Controller
     public function taskCreateAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        // $task = $em->getRepository('AppBundle:Task')->findOneById($taskId);
+
+        $user = $this->getUser();
+        $familyId = $user->getFamily();
+
+        $task = new Task();
+
+        $form = $this->createForm(TaskType::class, $task, array('constraints' => $familyId));
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // $form->getData() holds the submitted values
+            // but, the original `$task` variable has also been updated
+            $task = $form->getData();
+
+            // $em->persist($task);
+            // $em->flush();
+
+            return $this->redirectToRoute('tasks');
+        }
+
 
         return $this->render('AppBundle:task:task_create.html.twig', array(
-            // 'task' => $task
+            'form' => $form->createView(),
         ));
     }
 

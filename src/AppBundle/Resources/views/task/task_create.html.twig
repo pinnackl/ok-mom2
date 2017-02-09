@@ -1,0 +1,131 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}OK Mom - Tasks create{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Create new task</h1>
+        <div class="row">
+            {# <form class="col s12" method="post">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input placeholder="Task title" id="task_title" type="text" class="validate" name="title">
+                        <label for="task_title">Task title</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="task_description" class="materialize-textarea" name="description"></textarea>
+                        <label for="task_description">Task description</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col s9"><i class="material-icons prefix">schedule</i>All-day</label>
+                    <div class="switch col s3"><label><input type="checkbox" name="allday"><span class="lever"></span></label></div> 
+                </div>
+                <div class="row">
+                    <div class="input-field col s8">
+                        <i class="material-icons prefix">today</i>
+                        <input id="task_data" type="date" class="datepicker" name="startdate">
+                        <label for="task_data">Start date</label>
+                    </div>
+
+                    <div class="clockpicker input-field col s4"
+                        data-placement="top"
+                        data-align="right"
+                        data-autoclose="true">
+                        <i class="material-icons prefix">schedule</i>
+                        <input type="text" class="form-control" name="starttime">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s8">
+                        <i class="material-icons prefix">today</i>
+                        <input id="task_data" type="date" class="datepicker" name="enddate">
+                        <label for="task_data">End date</label>
+                    </div>
+
+                    <div class="clockpicker input-field col s4"
+                        data-placement="top"
+                        data-align="right"
+                        data-autoclose="true">
+                        <i class="material-icons prefix">schedule</i>
+                        <input type="text" class="form-control" name="endtime">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <select multiple name="assigned">
+                            {% for member in members %}
+                                <option value="{{member.id}}">{{member.username}}</option>
+                            {% endfor %}
+                        </select>
+                        <label>Add people</label>
+                    </div>
+                </div>
+                <div class='row'>
+                    <input class='col m3 s12 btn btn-large waves-effect' type="submit" id="_submit" name="action"
+                      value="Save">
+                </div>
+            </form> #}
+            {{ form_start(form, {'attr': {'class': 'register col s12'}}) }}
+            {# {{ form_widget(form) }} #}
+                <div class="row">
+                    <div class="input-field col s12">
+                        {{ form_widget(form.title) }}
+                        {{ form_label(form.title) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        {{ form_widget(form.description, {'attr':{'class': 'materialize-textarea'}}) }}
+                        {{ form_label(form.description) }}
+                    </div>
+                </div>
+                <div class="row">
+                    {{ form_label(form.allday, null, {'label_attr': {'class': 'col s9'}}) }}
+                    <div class="switch col s3"><label>{{ form_widget(form.allday) }}<span class="lever"></span></label></div> 
+                </div>
+                <div class="row">
+                    <div class="input-field col s8">
+                        <i class="material-icons prefix">today</i>
+                        {{ form_widget(form.start, {'attr':{'class': 'datepicker'}}) }}
+                        {{ form_label(form.start) }}
+                    </div>
+
+                    <div class="clockpicker input-field col s4"
+                        data-placement="top"
+                        data-align="right"
+                        data-autoclose="true">
+                        <i class="material-icons prefix">schedule</i>
+                        <input type="text" class="form-control" name="starttime">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s8">
+                        <i class="material-icons prefix">today</i>
+                        {{ form_widget(form.end, {'attr':{'class': 'datepicker'}}) }}
+                        {{ form_label(form.end) }}
+                    </div>
+
+                    <div class="clockpicker input-field col s4"
+                        data-placement="top"
+                        data-align="right"
+                        data-autoclose="true">
+                        <i class="material-icons prefix">schedule</i>
+                        <input type="text" class="form-control" name="endtime">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        {{ form_widget(form.family) }}
+                        {{ form_label(form.family) }}
+                    </div>
+                </div>
+                <div class='row'>
+                    {{ form_widget(form.save, {'attr':{'class': 'col m3 s12 btn btn-large waves-effect'}}) }}
+                </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
