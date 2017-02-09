@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Task
@@ -77,6 +78,16 @@ class Task
      */
     private $completed;
 
+
+    /**
+     * Many Users have Many Groups.
+     * @ORM\ManyToMany(targetEntity="User")
+     * @ORM\JoinTable(name="tasks_users",
+     *      joinColumns={@ORM\JoinColumn(name="task_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
+     *      )
+     */
+    private $users;
 
     /**
      * Get id
