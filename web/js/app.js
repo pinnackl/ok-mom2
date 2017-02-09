@@ -51,5 +51,14 @@ $(document).ready(function () {
     app.initSideNav();
 
     // Init the day slider
-    app.initDaySlider()
+    app.initDaySlider();
+
+    $('.datepicker').pickadate({
+        format: 'yyyy-mm-dd',
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 15, // Creates a dropdown of 15 years to control year
+    });
+
+    $('.clockpicker').clockpicker();
+    $('select').material_select();
 });

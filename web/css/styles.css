@@ -607,6 +607,34 @@ h2 {
     margin-bottom: 16px;
 }
 
+/* Task create */
+.input-field input[type=text]:focus + label {
+    color: #179BD7 !important;
+}
+
+/* label underline focus color */
+input:focus {
+    border-bottom: 1px solid #179BD7 !important;
+    box-shadow: 0 1px 0 0 #179BD7 !important;
+}
+
+.input-field .prefix {
+    color: #757575;
+}
+
+.input-field .prefix.active {
+    color: #179BD7;
+}
+
+.dropdown-content li>a, .dropdown-content li>span {
+    color: #179BD7;
+}
+
+[type="checkbox"]:checked+label:before {
+    border-right: 2px solid #179BD7;
+    border-bottom: 2px solid #179BD7;
+}
+
 /* Media Query */
 @media only screen and (max-width: 768px) { 
     .intro {
