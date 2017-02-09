@@ -29,8 +29,20 @@
                         </div>
                     </div>
                 {% endfor %}
+                <form action="{{inviteAction}}" method="post" class="row">
+                    <div class="input-field col s12">
+                        <input id="email" type="email" name="email">
+                        <label for="email">Enter an email adress</label>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <button type="submit" id="task_save" name="task[save]" class="col m3 s12 btn btn-large waves-effect">Add</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+
 
 {% endblock %}

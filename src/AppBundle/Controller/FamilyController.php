@@ -21,9 +21,12 @@ class FamilyController extends Controller
 
         $familyMember = $em->getRepository('AppBundle:User')->findByFamily($familyId);
 
+        $url = $url = $this->generateUrl('invite_family');
+
         return $this->render('AppBundle:Family:family.html.twig', array(
             'family' => $family,
-            'familyMember' => $familyMember
+            'familyMember' => $familyMember,
+            'inviteAction' => $url,
         ));
     }
 
@@ -38,7 +41,7 @@ class FamilyController extends Controller
     }
 
     /**
-     * @Route("/family/invite")
+     * @Route("/family/invite", name="invite_family")
      */
     public function inviteAction()
     {
