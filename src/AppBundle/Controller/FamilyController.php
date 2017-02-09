@@ -43,11 +43,35 @@ class FamilyController extends Controller
     /**
      * @Route("/family/invite", name="invite_family")
      */
-    public function inviteAction()
+    public function inviteAction(Request $request)
     {
-        return $this->render('AppBundle:Family:invite.html.twig', array(
-            // ...
-        ));
+
+      $em = $this->getDoctrine()->getManager();
+
+      $user = $this->getUser();
+      $familyId = $user->getFamily();
+
+      $family = $em->getRepository('AppBundle:Family')->find($familyId);
+
+      $message = \Swift_Message::newInstance()
+        ->setSubject('Hello Email')
+        ->setFrom('pinnakle.work@gmail.com')
+        ->setTo($request->query->get('email'))
+        ->setBody(
+            $this->renderView(
+                // app/Resources/views/Emails/registration.html.twig
+                'Family/email.txt.twig',
+                array('uuid' => $family->getUuid)
+            ),
+            'text/plain'
+        )
+    ;
+    $this->get('mailer')->send($message);
+
+    return $this->render('AppBundle:Family:invite.html.twig');
+        // return $this->render('AppBundle:Family:invite.html.twig', array(
+        //     // ...
+        // ));
     }
 
     /**
